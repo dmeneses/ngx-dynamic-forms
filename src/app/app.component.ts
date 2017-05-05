@@ -6,5 +6,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app works!';
+  title = 'Dynamic Form Generator';
+  dynamicFormModel;
+  modelEditor = `[{
+    "type": "text",
+    "defaultValue": "123"
+  }]`;
+
+  generateDynamicForm() {
+    this.dynamicFormModel = JSON.parse(this.modelEditor);
+  }
 }
