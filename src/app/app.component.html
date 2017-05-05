@@ -1,8 +1,17 @@
 <h1>
   {{title}}
 </h1>
-
-<textarea [(ngModel)]="modelEditor"></textarea>
-<button (click)="generateDynamicForm()">Generate Form</button>
-
-<app-dynamic-form [model]="dynamicFormModel"></app-dynamic-form>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-6">
+      <div class="form-group">
+        <label for="modelEditor" class="control-label">Form Editor:</label>
+        <textarea id="modelEditor" class="form-control" rows="15" [(ngModel)]="modelEditor"></textarea>
+      </div>
+      <button class="btn btn-primary" (click)="generateDynamicForm()">Generate Form</button>
+    </div>
+    <div class="col-xs-6">
+      <app-dynamic-form [model]="dynamicFormModel"></app-dynamic-form>
+    </div>
+  <div class="row">
+</div>
