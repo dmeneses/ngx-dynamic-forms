@@ -1,4 +1,26 @@
-<div class="form-group">
-    <label class="control-label">Generated Form:</label>
-</div>
 {{ model | json }}
+<ng-container *ngFor="let field of model">
+<div class="form-group" [ngSwitch]="field.type">
+    <label for="{{field.id}}" *ngIf="field.label">{{field.label}}</label>
+    
+    <input id="{{field.id}}" 
+        class="form-control"
+        *ngSwitchCase="isInputType(field.type)"
+        type='{{field.type}}'
+        [(ngModel)]="field.value"
+        [attributeSetter]="field.attributes"/>
+
+    <textarea id="{{field.id}}" 
+        class="form-control"
+        *ngSwitchCase="'textarea'"
+        [(ngModel)]="field.value"
+        [attributeSetter]="field.attributes"></textarea>
+
+    <select class="form-control" [(ngModel)]="field.value" *ngSwitchCase="'select'" [attributeSetter]="field.attributes">
+        <option *ngFor="let option of field.options" [ngValue]="option.value">{{option.name}}</option>
+    </select>
+    <div *ngSwitchDefault class="alert alert-danger" role="alert">Type not recognized: {{field.type}}</div>
+</div>
+</ng-container>
+
+<button (click)="test()">a</button>
